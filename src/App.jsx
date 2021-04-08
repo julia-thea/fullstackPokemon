@@ -6,7 +6,7 @@ const App = () => {
 
   return (
     <div>
-      <PokemonList />
+      <PokemonList pokemonList={pokemon}/>
     </div>
   )
 };

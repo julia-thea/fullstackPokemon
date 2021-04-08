@@ -22,6 +22,7 @@ class CatchPokemon extends Component {
   }
 
   catchPokemon(e) {
+    console.log(this.state.currentPokemon);
     e.preventDefault();
     this.props.addCaughtPokemon(this.state.currentPokemon);
     this.setState({

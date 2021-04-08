@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import Pokemon from "./Pokemon";
 import CatchPokemon from "./CatchPokemon";
+import pokemon from '../pokemonData';
+
 
 class PokemonList extends Component {
   constructor(props) {
@@ -19,12 +21,23 @@ class PokemonList extends Component {
 
   getPokemon() {
     // https://www.npmjs.com/package/axios#example
-    // FIX_ME
+    axios.get('http://127.0.0.1:3002/api/pokemon')
+    .then((result) => {
 
+      console.log("RESULT: ", result.data);
+      this.setState({pokemonList: result.data});
+    })
   }
 
   addCaughtPokemon(caughtPokemon) {
-    // FIX_ME
+    //
+
+    axios.post('http://127.0.0.1:3002/api/pokemon', caughtPokemon)
+    .then((result) => {
+      console.log(result);
+      this.getPokemon();
+
+    })
   }
 
   render() {
@@ -32,8 +45,7 @@ class PokemonList extends Component {
     <div>
       <table>
         <tbody>
-          {/** HINT: While the map method below currently uses props, it will need to map over something else when step 3 is completed */}
-          {this.props.pokemonList.map(pokemon => <Pokemon pokemon={pokemon} key={pokemon.id}/>)}
+          {this.state.pokemonList.map(pokemon => <Pokemon pokemon={pokemon} key={pokemon.id}/>)}
         </tbody>
       </table>
       <CatchPokemon addCaughtPokemon={this.addCaughtPokemon} />

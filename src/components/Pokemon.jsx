@@ -3,21 +3,28 @@ import React, { Component } from "react";
 // Fix this file. Not all mistakes are explicitly labeled with FIX_ME
 
 class Pokemon extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       showDetails: false,
     }
+    this.handleClick = this.handleClick.bind(this);
   }
+
+  handleClick() {
+    this.setState = !this.state.showDetails;
+  }
+
+
 
   render() {
     return(
-    <tr onClick={/*  FIX_ME ----> I should control the visibility of details */}>
+    <tr onClick={ this.handleClick() }>
       <td className="pokemon-name">
-        {/* FIX_ME */}
+        {this.props.pokemon.name}
       </td>
       <td>
-        {/* FIX_ME  ----> I should display an image somehow */}
+        <img src={this.props.pokemon.picture}/>
       </td>
       {this.state.showDetails ?
       <td>
@@ -28,4 +35,6 @@ class Pokemon extends Component {
     )
   }
 }
+
+export default Pokemon;
 
